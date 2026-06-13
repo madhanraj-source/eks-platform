@@ -1,1 +1,3 @@
-# Add dev environment outputs here as modules are connected.
+output "vpc_id" {
+  value = module.vpc.vpc_id
+}

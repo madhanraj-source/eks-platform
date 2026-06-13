@@ -1,16 +1,13 @@
-terraform {
-  required_version = ">= 1.5.0"
+module "vpc" {
+  source = "../../modules/vpc"
 
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
+  project_name = var.project_name
+
+  vpc_cidr = var.vpc_cidr
+
+  public_subnet_a_cidr = var.public_subnet_a_cidr
+  public_subnet_b_cidr = var.public_subnet_b_cidr
+
+  private_subnet_a_cidr = var.private_subnet_a_cidr
+  private_subnet_b_cidr = var.private_subnet_b_cidr
 }
-
-provider "aws" {
-  region = var.aws_region
-}
-
-# Wire the vpc, ecr, eks, and nodegroup modules here as they are implemented.

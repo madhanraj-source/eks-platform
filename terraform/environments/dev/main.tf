@@ -15,3 +15,10 @@ module "vpc" {
   az_a = var.az_a
   az_b = var.az_b
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  project_name = var.project_name
+  environment  = var.environment
+}

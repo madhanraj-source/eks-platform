@@ -1,4 +1,5 @@
-project_name = "eks-demo-dev"
+project_name = "eks-demo"
+environment  = "dev"
 
 vpc_cidr = "10.0.0.0/16"
 

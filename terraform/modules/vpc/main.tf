@@ -4,7 +4,7 @@ resource "aws_vpc" "this" {
   enable_dns_support   = true
 
   tags = {
-    Name = "${var.project_name}-vpc"
+    Name = "${var.project_name}-${var.environment}-vpc"
     Environment = "dev"
     ManagedBy   = "Terraform"
   }
@@ -17,9 +17,9 @@ resource "aws_subnet" "public_a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.project_name}-public-a"
+    Name = "${var.project_name}-${var.environment}-public-a"
     "kubernetes.io/role/elb" = "1"
-    "kubernetes.io/cluster/${var.project_name}" = "shared"
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}" = "shared"
   }
 }
 
@@ -30,9 +30,9 @@ resource "aws_subnet" "public_b" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.project_name}-public-b"
+    Name = "${var.project_name}-${var.environment}-public-b"
     "kubernetes.io/role/elb" = "1"
-    "kubernetes.io/cluster/${var.project_name}" = "shared"
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}" = "shared"
   }
 }
 
@@ -42,9 +42,9 @@ resource "aws_subnet" "private_a" {
   availability_zone = var.az_a
 
   tags = {
-    Name = "${var.project_name}-private-a"
+    Name = "${var.project_name}-${var.environment}-private-a"
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/${var.project_name}" = "shared"
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}" = "shared"
   }
 }
 
@@ -54,9 +54,9 @@ resource "aws_subnet" "private_b" {
   availability_zone = var.az_b
 
   tags = {
-    Name = "${var.project_name}-private-b"
+    Name = "${var.project_name}-${var.environment}-private-b"
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/${var.project_name}" = "shared"
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}" = "shared"
   }
 }
 
@@ -64,7 +64,7 @@ resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
   tags = {
-    Name = "${var.project_name}-igw"
+    Name = "${var.project_name}-${var.environment}-igw"
   }
 }
 
@@ -72,7 +72,7 @@ resource "aws_eip" "nat" {
   domain = "vpc"
 
   tags = {
-    Name = "${var.project_name}-nat-eip"
+    Name = "${var.project_name}-${var.environment}-nat-eip"
   }
 }
 
@@ -81,7 +81,7 @@ resource "aws_nat_gateway" "this" {
   subnet_id     = aws_subnet.public_a.id
 
   tags = {
-    Name = "${var.project_name}-nat"
+    Name = "${var.project_name}-${var.environment}-nat"
   }
 
   depends_on = [
@@ -98,7 +98,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "${var.project_name}-public-rt"
+    Name = "${var.project_name}-${var.environment}-public-rt"
   }
 }
 
@@ -121,7 +121,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "${var.project_name}-private-rt"
+    Name = "${var.project_name}-${var.environment}-private-rt"
   }
 }
 

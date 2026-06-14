@@ -1,4 +1,3 @@
-# Shared Terraform provider requirements for this project.
 terraform {
   required_version = ">= 1.6"
 
@@ -7,9 +6,28 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.30"
+    }
+
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.14"
+    }
   }
 }
 
 provider "aws" {
   region = "us-east-2"
+}
+
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
 }

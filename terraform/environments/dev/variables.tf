@@ -33,3 +33,11 @@ variable "az_a" {
 variable "az_b" {
   type = string
 }
+
+variable "aws_account_id" {
+  type = string
+}
+
+variable "oidc_provider_id" {
+  type = string
+}

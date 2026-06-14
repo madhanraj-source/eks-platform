@@ -42,3 +42,13 @@ module "nodegroup" {
 
   private_subnet_ids = module.vpc.private_subnet_ids
 }
+
+module "alb_irsa" {
+  source = "../../modules/alb_irsa"
+
+  project_name    = var.project_name
+  environment     = var.environment
+
+  aws_account_id  = var.aws_account_id
+  oidc_provider_id = var.oidc_provider_id
+}

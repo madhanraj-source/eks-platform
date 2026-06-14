@@ -33,3 +33,7 @@ output "cluster_endpoint" {
 output "node_role_arn" {
   value = module.nodegroup.node_role_arn
 }
+
+output "node_group_name" {
+  value = module.nodegroup.node_group_name
+}

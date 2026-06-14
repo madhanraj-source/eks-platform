@@ -29,3 +29,7 @@ output "cluster_name" {
 output "cluster_endpoint" {
   value = module.eks.cluster_endpoint
 }
+
+output "node_role_arn" {
+  value = module.nodegroup.node_role_arn
+}

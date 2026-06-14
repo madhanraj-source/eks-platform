@@ -31,3 +31,14 @@ module "eks" {
 
   private_subnet_ids = module.vpc.private_subnet_ids
 }
+
+module "nodegroup" {
+  source = "../../modules/nodegroup"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  cluster_name = module.eks.cluster_name
+
+  private_subnet_ids = module.vpc.private_subnet_ids
+}

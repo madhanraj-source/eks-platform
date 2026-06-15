@@ -46,10 +46,14 @@ module "nodegroup" {
 module "alb_irsa" {
   source = "../../modules/alb_irsa"
 
-  project_name    = var.project_name
-  environment     = var.environment
+  project_name = var.project_name
+  environment  = var.environment
 
-  aws_account_id  = var.aws_account_id
-  oidc_provider_id = var.oidc_provider_id
+  aws_account_id = var.aws_account_id
+
+  oidc_provider_id = replace(
+    module.eks.oidc_issuer,
+    "https://oidc.eks.us-east-2.amazonaws.com/id/",
+    ""
+  )
 }
-

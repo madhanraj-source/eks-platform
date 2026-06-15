@@ -8,11 +8,11 @@ resource "helm_release" "alb_controller" {
 
   values = [
     yamlencode({
-      clusterName = var.cluster_name
+      clusterName = data.terraform_remote_state.infra.outputs.cluster_name
 
-      region = var.region
+      region = "us-east-2"
 
-      vpcId = var.vpc_id
+      vpcId = data.terraform_remote_state.infra.outputs.vpc_id
 
       serviceAccount = {
         create = true
@@ -20,7 +20,7 @@ resource "helm_release" "alb_controller" {
         name = "aws-load-balancer-controller"
 
         annotations = {
-          "eks.amazonaws.com/role-arn" = var.alb_role_arn
+          "eks.amazonaws.com/role-arn" = data.terraform_remote_state.infra.outputs.alb_controller_role_arn
         }
       }
     })

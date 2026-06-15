@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../../modules/vpc"
+  source = "../../../modules/vpc"
 
   project_name = var.project_name
   environment  = var.environment
@@ -17,14 +17,14 @@ module "vpc" {
 }
 
 module "ecr" {
-  source = "../../modules/ecr"
+  source = "../../../modules/ecr"
 
   project_name = var.project_name
   environment  = var.environment
 }
 
 module "eks" {
-  source = "../../modules/eks"
+  source = "../../../modules/eks"
 
   project_name = var.project_name
   environment  = var.environment
@@ -33,7 +33,7 @@ module "eks" {
 }
 
 module "nodegroup" {
-  source = "../../modules/nodegroup"
+  source = "../../../modules/nodegroup"
 
   project_name = var.project_name
   environment  = var.environment
@@ -44,7 +44,7 @@ module "nodegroup" {
 }
 
 module "alb_irsa" {
-  source = "../../modules/alb_irsa"
+  source = "../../../modules/alb_irsa"
 
   project_name = var.project_name
   environment  = var.environment

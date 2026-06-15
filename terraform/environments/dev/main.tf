@@ -53,13 +53,3 @@ module "alb_irsa" {
   oidc_provider_id = var.oidc_provider_id
 }
 
-module "alb_controller" {
-  source = "../../modules/alb_controller"
-
-  cluster_name = module.eks.cluster_name
-  region       = "us-east-2"
-
-  vpc_id = module.vpc.vpc_id
-
-  alb_role_arn = module.alb_irsa.alb_controller_role_arn
-}

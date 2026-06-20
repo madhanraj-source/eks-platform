@@ -13,3 +13,7 @@ output "cluster_endpoint" {
 output "oidc_issuer" {
   value = aws_eks_cluster.this.identity[0].oidc[0].issuer
 }
+
+output "oidc_provider_arn" {
+  value = aws_iam_openid_connect_provider.eks.arn
+}

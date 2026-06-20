@@ -14,4 +14,3 @@ az_b = "us-east-2b"
 
 aws_account_id = "839931788751"
 
-oidc_provider_id = "E22AA4269FCAF939265E48C549E5CB21"

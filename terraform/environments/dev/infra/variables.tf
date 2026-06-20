@@ -37,7 +37,3 @@ variable "az_b" {
 variable "aws_account_id" {
   type = string
 }
-
-variable "oidc_provider_id" {
-  type = string
-}

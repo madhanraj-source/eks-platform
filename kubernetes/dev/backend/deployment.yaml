@@ -1,33 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: backend
-  labels:
-    app: backend
+
 spec:
-  replicas: 2
+  replicas: 1
+
   selector:
     matchLabels:
       app: backend
+
   template:
     metadata:
       labels:
         app: backend
+
     spec:
       containers:
-        - name: backend
-          image: hashicorp/http-echo:1.0
-          args:
-            - "-listen=:8080"
-            - "-text=backend service is running"
-          ports:
-            - name: http
-              containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
+      - name: backend
+
+        image: 839931788751.dkr.ecr.us-east-2.amazonaws.com/eks-demo-dev-backend:v1
+
+        ports:
+        - containerPort: 5000

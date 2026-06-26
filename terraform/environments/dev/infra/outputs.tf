@@ -41,3 +41,11 @@ output "node_group_name" {
 output "alb_controller_role_arn" {
   value = module.alb_irsa.alb_controller_role_arn
 }
+
+output "oidc_issuer" {
+  value = module.eks.oidc_issuer
+}
+
+output "oidc_provider_arn" {
+  value = module.eks.oidc_provider_arn
+}

@@ -20,7 +20,7 @@ spec:
       containers:
       - name: backend
 
-        image: 839931788751.dkr.ecr.us-east-2.amazonaws.com/eks-demo-dev-backend:v2
+        image: 839931788751.dkr.ecr.us-east-2.amazonaws.com/eks-demo-dev-backend:v3
 
         ports:
         - containerPort: 5000
